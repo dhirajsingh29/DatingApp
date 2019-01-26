@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../Services/authentication.service';
 import { AlertifyService } from '../Services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'da-nav',
@@ -10,7 +11,8 @@ import { AlertifyService } from '../Services/alertify.service';
 export class NavComponent implements OnInit {
   loginModel: any = {};
 
-  constructor(public _authService: AuthenticationService, private _alertify: AlertifyService) { }
+  constructor(public _authService: AuthenticationService, private _alertify: AlertifyService,
+    private _router: Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +23,8 @@ export class NavComponent implements OnInit {
         this._alertify.success('Signed in Successfully');
       }, error => {
         this._alertify.error(error);
+      }, () => {
+        this._router.navigate(['/members']);
       });
   }
 
@@ -33,6 +37,7 @@ export class NavComponent implements OnInit {
   signOut() {
     localStorage.removeItem('token');
     this._alertify.message('Signed Out');
+    this._router.navigate(['/home']);
   }
 
 }
