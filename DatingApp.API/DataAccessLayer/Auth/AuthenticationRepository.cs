@@ -48,6 +48,7 @@ namespace DatingApp.API.DataAccessLayer.Auth
         }
 
         #region Helper Methods
+        
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             // using helps call Dispose method which (in inheritance chain up) HMACSHA512 parent implements
@@ -72,6 +73,7 @@ namespace DatingApp.API.DataAccessLayer.Auth
             }
             return true;
         }
+        
         #endregion
     }
 }
