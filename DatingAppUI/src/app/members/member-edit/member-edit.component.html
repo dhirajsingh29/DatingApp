@@ -16,7 +16,7 @@
       
       <div class="col-sm-4">
         <div class="card">
-          <img src="{{user.picUrl}}" alt="{{user.nickname}}" class="card-img-top img-thumbnail">
+          <img src="{{picUrl}}" alt="{{user.nickname}}" class="card-img-top img-thumbnail">
           <div class="card-body">
             <div>
               <strong>Location:</strong>
@@ -68,7 +68,8 @@
             </tab>
   
             <tab heading="Edit Photos">              
-              <p>editing photo will go here</p>
+              <da-photo-editor [photos]="user.photos"
+                (getProfileImage)="updateMainProfileImage($event)"></da-photo-editor>
             </tab>
           </tabset>
   

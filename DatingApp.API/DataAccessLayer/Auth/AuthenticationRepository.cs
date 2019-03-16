@@ -15,7 +15,10 @@ namespace DatingApp.API.DataAccessLayer.Auth
         }
         public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            // Photos is included here, so that when we return user after login alongwith token
+            // it contains photo url
+            var user = await _context.Users.Include(x => x.Photos)
+                                     .FirstOrDefaultAsync(x => x.Username == username);
 
             if (user == null)
                 return null;

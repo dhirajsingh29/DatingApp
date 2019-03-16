@@ -14,6 +14,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
   user: User;
+  picUrl: string;
 
   // HostListener here helps us to access the host of our application (browser here)
   // and prevents browser of closing accidentally if we clicked Close by mistake
@@ -31,6 +32,7 @@ export class MemberEditComponent implements OnInit {
     this._activatedRoute.data.subscribe(data => {
       this.user = data['user'];
     });
+    this._authenticationService.currentPicUrl.subscribe(picUrl => this.picUrl = picUrl);
   }
 
   updateProfile() {
@@ -41,6 +43,10 @@ export class MemberEditComponent implements OnInit {
       }, error => {
         this._alertify.error(error);
       });
+  }
+
+  updateMainProfileImage(picUrl) {
+    this.user.picUrl = picUrl;
   }
 
 }
