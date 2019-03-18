@@ -42,8 +42,8 @@ export class AuthenticationService {
       );
   }
 
-  register(regModel: any) {
-    return this._http.post(this.baseUrl + 'register', regModel);
+  register(user: User) {
+    return this._http.post(this.baseUrl + 'register', user);
   }
 
   signedIn() {

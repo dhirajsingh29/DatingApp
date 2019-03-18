@@ -52,8 +52,13 @@ export class PhotoEditorComponent implements OnInit {
           description: result.description,
           isProfilePic: result.isProfilePic
         };
-
         this.photos.push(photo);
+
+        if (photo.isProfilePic) {
+          this._authenticationService.changeProfilePic(photo.url);
+          this._authenticationService.currentUser.picUrl = photo.url;
+          localStorage.setItem('user', JSON.stringify(this._authenticationService.currentUser));
+        }
       }
     };
   }

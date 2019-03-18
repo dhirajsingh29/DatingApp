@@ -1,80 +1,109 @@
-
 <div class="container mt-4">
-    <div class="row">
-      <div class="col-sm-4">
-          <h1>Your Profile</h1>
-      </div>
-      <div class="col-sm-8">
-        <div *ngIf="editForm.dirty" class="alert alert-info">
-          <strong>Information:</strong>
-          You have made changes to your profile. Any unsaved changes will be lost!.
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>Your Profile</h1>
     </div>
-  
-    <div class="row">
-      
-      <div class="col-sm-4">
-        <div class="card">
-          <img src="{{picUrl}}" alt="{{user.nickname}}" class="card-img-top img-thumbnail">
-          <div class="card-body">
-            <div>
-              <strong>Location:</strong>
-              <p>{{ user.city }}, {{ user.country }}</p>
-            </div>
-            <div>
-              <strong>Age:</strong>
-              <p>{{ user.age }}</p>
-            </div>
-            <div>
-              <strong>Last Active:</strong>
-              <p>{{ user.lastActive }}</p>
-            </div>
-            <div>
-              <strong>Member since:</strong>
-              <p>{{ user.createDate }}</p>
-            </div>
-          </div>
-          <div class="card-footer">
-            <button [disabled]="!editForm.dirty" form="editForm"
-              class="btn btn-success btn-block">Save Profile</button>
-          </div>
-        </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>Information:</strong>
+        You have made changes to your profile. Any unsaved changes will be
+        lost!.
       </div>
-  
-      <div class="col-sm-8">
-        <div class="tab-panel">
-  
-          <tabset class="user-tabset">
-            <tab heading="Edit Profile">
-              <form #editForm="ngForm" id="editForm" (ngSubmit)="updateProfile()">
-                  <h4>Description</h4>
-                  <textarea name="introduction" rows="6" class="form-control"
-                    [(ngModel)]="user.introduction"></textarea>
-                  <h4>Looking For</h4>
-                  <textarea name="lookingFor" rows="6" class="form-control"
-                    [(ngModel)]="user.lookingFor"></textarea>
-                  <h4>Interests</h4>
-                  <textarea name="interests" rows="6" class="form-control"
-                    [(ngModel)]="user.interests"></textarea>
-                  <h4>Location Details:</h4>
-                  <div class="form-inline">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" name="city" [(ngModel)]="user.city">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" name="country" [(ngModel)]="user.country">
-                  </div>
-              </form>              
-            </tab>
-  
-            <tab heading="Edit Photos">              
-              <da-photo-editor [photos]="user.photos"
-                (getProfileImage)="updateMainProfileImage($event)"></da-photo-editor>
-            </tab>
-          </tabset>
-  
-        </div>
-      </div>
-      
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img
+          src="{{ picUrl || '../../../../../assets/user.png' }}"
+          alt="{{ user.nickname }}"
+          class="card-img-top img-thumbnail"
+        />
+        <div class="card-body">
+          <div>
+            <strong>Location:</strong>
+            <p>{{ user.city }}, {{ user.country }}</p>
+          </div>
+          <div>
+            <strong>Age:</strong>
+            <p>{{ user.age }}</p>
+          </div>
+          <div>
+            <strong>Last Active:</strong>
+            <p>{{ user.lastActive }}</p>
+          </div>
+          <div>
+            <strong>Member since:</strong>
+            <p>{{ user.createDate }}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button
+            [disabled]="!editForm.dirty"
+            form="editForm"
+            class="btn btn-success btn-block"
+          >
+            Save Profile
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="user-tabset">
+          <tab heading="Edit Profile">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateProfile()">
+              <h4>Description</h4>
+              <textarea
+                name="introduction"
+                rows="6"
+                class="form-control"
+                [(ngModel)]="user.introduction"
+              ></textarea>
+              <h4>Looking For</h4>
+              <textarea
+                name="lookingFor"
+                rows="6"
+                class="form-control"
+                [(ngModel)]="user.lookingFor"
+              ></textarea>
+              <h4>Interests</h4>
+              <textarea
+                name="interests"
+                rows="6"
+                class="form-control"
+                [(ngModel)]="user.interests"
+              ></textarea>
+              <h4>Location Details:</h4>
+              <div class="form-inline">
+                <label for="city" class="mr-2">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="city"
+                  [(ngModel)]="user.city"
+                />
+                <label for="country" class="ml-4 mr-2">Country</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="country"
+                  [(ngModel)]="user.country"
+                />
+              </div>
+            </form>
+          </tab>
+
+          <tab heading="Edit Photos">
+            <da-photo-editor
+              [photos]="user.photos"
+              (getProfileImage)="updateMainProfileImage($event)"
+            ></da-photo-editor>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

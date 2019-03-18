@@ -1,14 +1,16 @@
-
 <div class="container mt-4">
   <div class="row">
     <h1>{{ user.nickname }}'s Profile</h1>
   </div>
 
   <div class="row">
-    
     <div class="col-sm-4">
       <div class="card">
-        <img src="{{user.picUrl}}" alt="{{user.nickname}}" class="card-img-top img-thumbnail">
+        <img
+          src="{{ user.picUrl || '../../../../../assets/user.png' }}"
+          alt="{{ user.nickname }}"
+          class="card-img-top img-thumbnail"
+        />
         <div class="card-body">
           <div>
             <strong>Location:</strong>
@@ -38,7 +40,6 @@
 
     <div class="col-sm-8">
       <div class="tab-panel">
-
         <tabset class="user-tabset">
           <tab heading="About {{ user.nickname }}">
             <h4>Description</h4>
@@ -53,16 +54,17 @@
           </tab>
 
           <tab heading="Photos">
-            <ngx-gallery [options]="userGalleryOptions" [images]="userGalleryImages"></ngx-gallery>
+            <ngx-gallery
+              [options]="userGalleryOptions"
+              [images]="userGalleryImages"
+            ></ngx-gallery>
           </tab>
 
           <tab heading="Messages">
             <p>messages will go here</p>
           </tab>
         </tabset>
-
       </div>
     </div>
-    
   </div>
 </div>
