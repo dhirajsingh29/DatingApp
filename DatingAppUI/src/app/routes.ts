@@ -3,13 +3,14 @@ import { HomeComponent } from './home/home.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ListsComponent } from './lists/lists.component';
-import { AuthGuard } from './guards/auth.guard';
 import { UserDetailComponent } from './members/user-detail/user-detail.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { AuthGuard } from './guards/auth.guard';
+import { ProtectUnsavedChangesGuard } from './guards/protect-unsaved-changes.guard';
 import { UserDetailResolver } from './members/user-detail/user-detail.resolver';
 import { MemberListResolver } from './members/member-list/member-list.resolver';
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './members/member-edit/member-edit.resolver';
-import { ProtectUnsavedChangesGuard } from './guards/protect-unsaved-changes.guard';
+import { ListsResolver } from './lists/lists.resolver';
 
 export const routes: Routes = [
     {
@@ -45,7 +46,8 @@ export const routes: Routes = [
             },
             {
                 path: 'lists',
-                component: ListsComponent
+                component: ListsComponent,
+                resolve: { users: ListsResolver }
             }
         ]
     },

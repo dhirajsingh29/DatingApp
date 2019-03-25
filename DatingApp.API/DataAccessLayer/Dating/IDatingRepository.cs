@@ -16,5 +16,6 @@ namespace DatingApp.API.DataAccessLayer.Dating
          Task<User> GetUser(int id);
          Task<Photo> GetPhoto(int id);
          Task<Photo> GetProfilePic(int userId);
+         Task<Like> GetLike(int userId, int recipientId);
     }
 }
