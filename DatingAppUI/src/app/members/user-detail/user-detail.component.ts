@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/Services/user.service';
 import { AlertifyService } from 'src/app/Services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'da-user-detail',
@@ -11,6 +12,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
+  @ViewChild('userTabs') userTabs: TabsetComponent;
   user: User;
   userGalleryOptions: NgxGalleryOptions[];
   userGalleryImages: NgxGalleryImage[];
@@ -24,6 +26,11 @@ export class UserDetailComponent implements OnInit {
     // with Resolver in place, in template file we no longer need safe navigation operator(?)
     this._activatedRoute.data.subscribe(data => {
       this.user = data['user'];
+    });
+
+    this._activatedRoute.queryParams.subscribe(params => {
+      const selectedTab = params['tab'];
+      this.userTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
     });
 
     this.userGalleryOptions = [
@@ -53,14 +60,7 @@ export class UserDetailComponent implements OnInit {
     return picUrls;
   }
 
-  // below method is not required anymore, as we are using Resolver to pre fetch the user details
-  // getUserDetails() {
-  //   this._userService.getUser(+this._activatedRoute.snapshot.params['id'])
-  //     .subscribe((user: User) => {
-  //       this.user = user;
-  //     }, error => {
-  //       this.alertify.error(error);
-  //     });
-  // }
-
+  selectTab(tabId: number) {
+    this.userTabs.tabs[tabId].active = true;
+  }
 }

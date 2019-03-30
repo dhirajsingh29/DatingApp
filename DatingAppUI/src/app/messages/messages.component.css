@@ -1,0 +1,21 @@
+table {
+    margin-top: 15px;
+}
+
+.img-circle {
+    max-height: 50px;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.page-link {
+    color: #772953;
+}
+
+.page-item.active .page-link {    
+    color: #fff;
+    background-color: #772953 !important;
+    border-color: #772953 !important;
+}

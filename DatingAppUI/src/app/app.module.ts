@@ -26,6 +26,8 @@ import { MemberEditResolver } from './members/member-edit/member-edit.resolver';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { ListsResolver } from './lists/lists.resolver';
+import { MessagesResolver } from './messages/messages.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 export function getToken() {
    return localStorage.getItem('token');
@@ -44,7 +46,8 @@ export function getToken() {
       UserDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
+      MemberMessagesComponent
    ],
    imports: [
       BrowserModule,
@@ -72,7 +75,8 @@ export function getToken() {
       UserDetailResolver,
       MemberListResolver,
       MemberEditResolver,
-      ListsResolver
+      ListsResolver,
+      MessagesResolver
    ],
    bootstrap: [
       AppComponent
